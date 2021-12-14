@@ -1,0 +1,26 @@
+{% extends 'todo/base.html' %}
+{% load static widget_tweaks %}
+
+{% block main %}
+
+<form action="" method="post">
+  {% csrf_token %}
+  <div class="container">
+    <div class="row">
+      <div class="col-7 col-sm-7 col-md-6 mx-auto">
+        {% render_field form.email class="form-control mb-3 rounded-pill text-dark-light" placeholder="Email" %}
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-7 col-sm-7 col-md-6 mx-auto">
+        {% render_field form.user_name class="form-control mb-3 rounded-pill text-dark-light" placeholder="Password" %}
+      </div>
+    </div>
+
+    <div class="text-center mt-5">
+      <button type="submit" class="btn btn-lg bg-white text-blue shadow border-orange">登録情報を更新する</button>
+    </div>
+  </div>
+</form>
+
+{% endblock main %}

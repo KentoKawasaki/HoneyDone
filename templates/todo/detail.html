@@ -1,0 +1,55 @@
+{% extends 'todo/base.html' %}
+{% load static widget_tweaks %}
+
+{% block main %}
+
+<section class="d-flex justify-content-center">
+  <div class="p-5 w-75 bg-detail-blue">
+  <div class="container mb-5">
+    <!-- title -->
+    <div class="row">
+      <div class="col-11 col-lg-8 mx-auto mb-3">
+        <div class="py-3 text-warning px-3">
+          <h5 class="mb-0 fw-bold font-20 text-center">{{ todo.title }}</h5>
+        </div>
+      </div>
+    </div>
+    <!-- body -->
+    <div class="row">
+      <div class="col-11 col-lg-8 mx-auto mb-3">
+        <div class="vh-50 bg-lightgray py-3 text-dark-light px-4">
+          <p class="mb-0 fs-6"><span class="fw-bold font-20">詳細/内容:</span><br>{{ todo.body|linebreaksbr }}</p>
+        </div>
+      </div>
+    </div>
+    <!-- date -->
+    <div class="row">
+      <div class="col-11 col-lg-8 mx-auto mb-3">
+        <div class="py-3 text-dark-light text-center px-4">
+          <span class="mb-0 fw-bold text-center text-warning">作成日時 : {{ todo.created|date:'Y/m/d H:i' }}</span>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- btn -->
+  <div class="container">
+    <div class="row">
+      <!-- btn of back -->
+      <div class="col-6">
+        <div class="text-end">
+          <a href="{% url 'todo:index' %}" class="btn bg-lightgray shadow text-dark-light border-orange">一覧へ</a>
+        </div>
+      </div>
+      <!-- btn of edit -->
+      <div class="col-6">
+        <div class="text-start">
+          <a href="{% url 'todo:todo_update' todo.pk %}" class="btn bg-white shadow text-blue border-orange">編集する</a>
+        </div>
+      </div>
+      
+    </div>
+  </div>
+</div>
+</section>
+
+{% endblock main %}

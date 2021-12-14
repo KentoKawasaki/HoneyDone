@@ -1,0 +1,73 @@
+{% extends 'todo/base.html' %} {% load static %} {% block main %}
+<section>
+  <div class="container">
+    <div class="">
+      <div class="container text-center text-warning pb-2">
+        <h3 class="mb-0">今日のタスク</h3>
+        <!-- <p class="fw-bold fs-6">({{ todos.0.created|date:'Y/m/d H:i' }}~)</p> -->
+        <p class="fw-bold fs-6 mb-0 pb-2">({{ start_datetime }} ~ {{ end_datetime }})</p>
+      </div>
+      
+      <div class="row">
+        <div class="col-11 col-sm-9 col-md-8 col-lg-7 mx-auto">
+          <!-- status=False-->
+          {% if status_False %}
+          {% for status_f in status_False %}
+          <!-- Card -->
+          <div class="card rounded-pill mb-4">
+            <div class="container py-2">
+              <div class="row">
+                <div class="col-10 col-md-9">
+                  <div class="px-2">
+                    <span class="ms-0 ps-0 pe-4 priority-{{ status_f.priority }}">{{ status_f.priority }}</span><a href="{% url 'todo:todo_detail' status_f.pk %}" class="todo-title">{{ status_f.title }}</a>
+                  </div>
+                </div>
+                <div class="col-2 col-md-3">
+                  <div class="text-end px-3">
+                    <a href="{% url 'todo:todo_delete' status_f.pk %}"><i class="icofont-ui-delete text-blue text-danger font-20"></i></a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- end Card -->
+          {% endfor %}
+          {% endif %}
+          <!-- status=True -->
+          {% if status_True %}
+          {% for status_t in status_True %}
+          <!-- Card -->
+          <div class="card rounded-pill mb-4 bg-light-green">
+            <div class="container py-2">
+              <div class="row">
+                <div class="col-10 col-md-9">
+                  <div class="px-2">
+                    <s>
+                      <span class="ms-0 ps-0 pe-4 priority-{{ status_t.priority }}">{{ status_t.priority }}</span><a href="{% url 'todo:todo_detail' status_t.pk %}" class="todo-title">{{ status_t.title }}</a>
+                    </s>
+                  </div>
+                </div>
+                <div class="col-2 col-md-3">
+                  <div class="text-end px-3">
+                    <a href="{% url 'todo:todo_delete' status_t.pk %}"><i class="icofont-ui-delete text-blue text-danger font-20"></i></a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- end Card -->
+          {% endfor %}
+          {% endif %}
+        </div>
+      </div>
+    </div>
+    {% if todos|length < 6 %}
+    <div class="d-inline-block bg-white plus-btn shadow">
+      <a href="{% url 'todo:todo_create' %}">
+        <i class="icofont-plus plus-icon"></i>
+      </a>
+    </div>
+    {% endif %}
+  </div>
+</section>
+{% endblock main %}

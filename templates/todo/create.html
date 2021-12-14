@@ -1,0 +1,39 @@
+{% extends 'todo/base.html' %}
+{% load static widget_tweaks %}
+
+{% block main %}
+
+<form action="" method="post">
+  {% csrf_token %}
+  <div class="container">
+    <div class="row px-5">
+      <div class="col-12 col-md-7 mx-auto">
+        {% for form in formset %}
+        <div class="row fieldWrapper">
+          <div class="col-3 text-center">
+            <label for="{{ form.priority.id_for_label }}" class="form-label text-warning">{{ form.priority.label }}</label>
+            {% render_field form.priority class="form-control mb-3 rounded-pill text-dark-light text-center" type="number" min="1" max="6" value=forloop.counter %}
+          </div>
+          <div class="col-9 text-center">
+            <label for="{{ form.title.id_for_label }}" class="form-label text-warning">{{ form.title.label }}</label>
+            {% render_field form.title class="form-control mb-3 rounded-pill text-dark-light" placeholder="タスク" %}
+          </div>
+        </div>
+        {% endfor %}
+      </div>
+      {{ formset.management_form }}
+    </div>
+    <!-- <div class="row">
+      <div class="col-7 col-sm-7 col-md-6 mx-auto">
+        {% render_field form.body class="form-control mb-3 rounded text-dark-light" placeholder="詳細/内容" %}
+      </div>
+    </div> -->
+    
+    <div class="text-center">
+      <button type="submit" class="btn btn-lg bg-white text-blue shadow border-orange">作成する</button>
+    </div>
+  </div>
+  
+</form>
+
+{% endblock main %}
