@@ -14,7 +14,7 @@ LOCALE_PATHS = (os.path.join(BASE_DIR, 'locale'),)
 env = environ.Env(DEBUG=(bool,False))
 # env.read_env(os.path.join(BASE_DIR,'.env'))
 
-IS_ON_HEROKU = env.bool('ON_HEROKU', default=False)
+IS_ON_HEROKU = env.bool('IS_ON_HEROKU', default=False)
 if not IS_ON_HEROKU:
     env.read_env(os.path.join(BASE_DIR, '.env'))
 # SECURITY WARNING: keep the secret key used in production secret!
@@ -22,6 +22,7 @@ SECRET_KEY = env('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = env.get_value('DEBUG', cast = bool)
+SQLITE = env.get_value('SQLITE', cast = bool)
 
 if DEBUG:
     ALLOWED_HOSTS = ['*']
@@ -78,12 +79,15 @@ TEMPLATES = [
 WSGI_APPLICATION = 'app.wsgi.application' #プロジェクト名をxxxに入れる
 
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+if SQLITE:
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.sqlite3',
+            'NAME': BASE_DIR / 'db.sqlite3',
+        }
     }
-}
+# else:
+#     DATABASES =
 
 
 
