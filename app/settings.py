@@ -22,7 +22,7 @@ SECRET_KEY = env('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = env.get_value('DEBUG', cast = bool)
-SQLITE = env.get_value('SQLITE', cast = bool)
+# SQLITE = env.get_value('SQLITE', cast = bool)
 
 if DEBUG:
     ALLOWED_HOSTS = ['*']
@@ -79,15 +79,19 @@ TEMPLATES = [
 WSGI_APPLICATION = 'app.wsgi.application' #プロジェクト名をxxxに入れる
 
 
-if SQLITE:
-    DATABASES = {
-        'default': {
-            'ENGINE': 'django.db.backends.sqlite3',
-            'NAME': BASE_DIR / 'db.sqlite3',
-        }
+# if SQLITE:
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': BASE_DIR / 'db.sqlite3',
     }
+}
 # else:
-#     DATABASES =
+#     DATABASES = {
+#         'default': {
+#             'ENGINE'
+#         }
+#     }
 
 
 
