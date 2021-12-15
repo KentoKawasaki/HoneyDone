@@ -10,6 +10,3 @@ urlpatterns = [
     path('update/<int:pk>/', views.todo_update, name='todo_update'),
     path('delete/<int:pk>/', views.todo_delete, name='todo_delete'),
 ]
-
-
-handler500 = views.my_customized_server_error
