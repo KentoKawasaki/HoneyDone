@@ -12,11 +12,11 @@
         <div class="row fieldWrapper">
           <div class="col-3 text-center">
             <label for="{{ form.priority.id_for_label }}" class="form-label text-warning">{{ form.priority.label }}</label>
-            {% render_field form.priority class="form-control mb-3 rounded-pill text-dark-light text-center" type="number" min="1" max="6" value=forloop.counter %}
+            {% render_field form.priority class="form-control mb-3 bg-platinum text-dark-light text-center" type="number" min="1" max="6" value=forloop.counter %}
           </div>
           <div class="col-9 text-center">
             <label for="{{ form.title.id_for_label }}" class="form-label text-warning">{{ form.title.label }}</label>
-            {% render_field form.title class="form-control mb-3 rounded-pill text-dark-light" placeholder="タスク" %}
+            {% render_field form.title class="form-control mb-3 bg-platinum text-dark-light" placeholder="タスク" %}
           </div>
         </div>
         {% endfor %}

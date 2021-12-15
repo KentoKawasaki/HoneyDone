@@ -16,11 +16,11 @@
         <div class="row">
           <div class="col text-end">
             <label for="{{ form.priority.id_for_label }}" class="col-form-label col-form-label-sm text-warning">{{ form.priority.label }}</label>
-            {% render_field form.priority class="col-form-control col-form-control rounded-pill text-center text-dark-light" type="number" min="1" max="6" %}
+            {% render_field form.priority class="col-form-control col-form-control bg-platinum text-center text-dark-light" type="number" min="1" max="6" %}
           </div>
           <div class="col text-start">
             <label for="{{ form.status.id_for_label }}" class="col-form-label col-form-label-sm text-warning">{{ form.status.label }}</label>
-          {% render_field form.status class="form-check-input rounded-pill text-dark-light" type="checkbox" %}
+          {% render_field form.status class="form-check-input bg-platinum text-dark-light" type="checkbox" %}
           </div>
         </div>
       </div>
@@ -28,13 +28,13 @@
     <div class="row mb-3">
       <div class="col-10 col-sm-7 col-md-6 mx-auto">
         <label for="{{ form.title.id_for_label }}" class="form-label text-warning">{{ form.title.label }}</label>
-        {% render_field form.title class="form-control rounded-pill text-dark-light" placeholder="タイトル" %}
+        {% render_field form.title class="form-control bg-platinum text-dark-light" placeholder="タイトル" %}
       </div>
     </div>
     <div class="row">
       <div class="col-10 col-sm-7 col-md-6 mx-auto">
         <label for="{{ form.body.id_for_label }}" class="form-label text-warning">{{ form.body.label }}</label>
-        {% render_field form.body class="form-control mb-3 rounded text-dark-light" placeholder="詳細/内容" %}
+        {% render_field form.body class="form-control mb-3 bg-platinum text-dark-light" placeholder="詳細/内容" %}
       </div>
     </div>
     <div class="text-center">

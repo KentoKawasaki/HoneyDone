@@ -58,6 +58,9 @@ a {
 .bg-detail-blue {
   background-color: #4545b1;
 }
+.bg-platinum {
+  background-color: #e5e4e2;
+}
 .todo-title {
   font-size: 18px;
   color: #4a4a4a;
@@ -79,6 +82,6 @@ a {
   border: rgba(122, 122, 122, 0.4);
   box-shadow: none;
 }
-.bg-light-green{
-  background-color: #90EE90;
+.bg-light-green {
+  background-color: #90ee90;
 }
