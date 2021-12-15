@@ -13,7 +13,7 @@ LOCALE_PATHS = (os.path.join(BASE_DIR, 'locale'),)
 # 環境変数の読み込み
 env = environ.Env()
 
-IS_ON_HEROKU = env.bool('ON_HEROKU', default=False)
+IS_ON_HEROKU = env.bool('IS_ON_HEROKU', default=False)
 if not IS_ON_HEROKU:
     env.read_env(os.path.join(BASE_DIR, '.env'))
 # SECURITY WARNING: keep the secret key used in production secret!
@@ -169,4 +169,10 @@ FILE_UPLOAD_MAX_MEMORY_SIZE = 15728640
 DATA_UPLOAD_MAX_MEMORY_SIZE = 15728640
 
 if not DEBUG:
+    import dj_database_url
+
+    db_from_env = dj_database_url.config()
+    DATABASES = {
+        'default': db_from_env
+    }
     django_heroku.settings(locals())
