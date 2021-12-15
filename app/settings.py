@@ -11,8 +11,7 @@ PROJECT_NAME = os.path.basename(BASE_DIR)
 LOCALE_PATHS = (os.path.join(BASE_DIR, 'locale'),)
 
 # 環境変数の読み込み
-env = environ.Env(DEBUG=(bool,False))
-# env.read_env(os.path.join(BASE_DIR,'.env'))
+env = environ.Env()
 
 IS_ON_HEROKU = env.bool('IS_ON_HEROKU', default=False)
 if not IS_ON_HEROKU:
@@ -83,7 +82,7 @@ WSGI_APPLICATION = 'app.wsgi.application' #プロジェクト名をxxxに入れ�
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
     }
 }
 # else:
@@ -152,11 +151,12 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.1/howto/static-files/
 
 STATIC_URL = '/static/'
-STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 STATIC_ROOT = os.path.join(BASE_DIR, 'static/')
-STATICFILES_DIRS = [
-    os.path.join(BASE_DIR, 'static/')
-]
+if not DEBUG:
+    STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+# STATICFILES_DIRS = [
+#     os.path.join(BASE_DIR, 'static/')
+# ]
 
 MEDIA_URL = '/media/'
 MEDIA_ROOT = 'media/'
@@ -168,4 +168,5 @@ DATA_UPLOAD_MAX_NUMBER_FIELDS = 2000
 FILE_UPLOAD_MAX_MEMORY_SIZE = 15728640
 DATA_UPLOAD_MAX_MEMORY_SIZE = 15728640
 
-django_heroku.settings(locals())
+if not DEBUG:
+    django_heroku.settings(locals())

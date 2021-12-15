@@ -48,10 +48,16 @@ class IndexView(LoginRequiredMixin, ListView):
         context = super().get_context_data(**kwargs)
         # Add in a QuerySet of all the books
         qs_todos = context['todos']
-        start_datetime = qs_todos[0].created
-        end_datetime = start_datetime + datetime.timedelta(days=1)
-        qs_status_T = [qs for qs in qs_todos if qs.status]
-        qs_status_F = [qs for qs in qs_todos if not qs.status]
+        if qs_todos:
+            start_datetime = qs_todos[0].created
+            end_datetime = start_datetime + datetime.timedelta(days=1)
+            qs_status_T = [qs for qs in qs_todos if qs.status]
+            qs_status_F = [qs for qs in qs_todos if not qs.status]
+        else:
+            start_datetime = timezone.now()
+            end_datetime = start_datetime + datetime.timedelta(days=1)
+            qs_status_T = None
+            qs_status_F = None
         context['start_datetime'] = start_datetime
         context['end_datetime'] = end_datetime
         context['status_True'] = qs_status_T
