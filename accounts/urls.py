@@ -10,4 +10,4 @@ urlpatterns = [
 ]
 
 
-handler500 = views.mycustomized_sever_error
+handler500 = views.my_customized_server_error
