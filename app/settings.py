@@ -1,7 +1,6 @@
 from pathlib import Path
 import os
 import environ
-import django_heroku
 
 from django.utils.translation import gettext_lazy as _
 
@@ -151,12 +150,12 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.1/howto/static-files/
 
 STATIC_URL = '/static/'
-STATIC_ROOT = os.path.join(BASE_DIR, 'static/')
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 if not DEBUG:
     STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
-# STATICFILES_DIRS = [
-#     os.path.join(BASE_DIR, 'static/')
-# ]
+STATICFILES_DIRS = [
+    os.path.join(BASE_DIR, 'static/')
+]
 
 MEDIA_URL = '/media/'
 MEDIA_ROOT = 'media/'
@@ -169,6 +168,7 @@ FILE_UPLOAD_MAX_MEMORY_SIZE = 15728640
 DATA_UPLOAD_MAX_MEMORY_SIZE = 15728640
 
 if not DEBUG:
+    import django_heroku
     import dj_database_url
 
     db_from_env = dj_database_url.config()
