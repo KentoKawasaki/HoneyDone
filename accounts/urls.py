@@ -8,3 +8,6 @@ urlpatterns = [
     path('logout/', views.logout, name='logout'),
     path('user-create/', views.user_create, name='user_create'),
 ]
+
+
+handler500 = views.mycustomized_sever_error
